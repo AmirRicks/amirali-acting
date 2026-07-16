@@ -163,7 +163,7 @@ export default function Home() {
               alt="Amirali Hamzeh — actor headshot in a navy suit"
               fill
               priority
-              className="object-cover object-[70%_20%] md:object-[75%_25%]"
+              className="object-cover object-[52%_18%] md:object-[75%_25%]"
               sizes="100vw"
             />
           </div>
