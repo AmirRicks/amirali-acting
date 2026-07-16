@@ -236,12 +236,12 @@ export default function Home() {
       </section>
 
       {/* ============ BIG IMAGE BAND — discipline ============ */}
-      <section className="relative flex min-h-[70svh] items-end overflow-hidden">
+      <section className="relative flex min-h-[75svh] items-end overflow-hidden md:min-h-[88svh]">
         <Image
           src="/photos/planche.jpg"
           alt="Amirali Hamzeh holding a full planche over a canyon in Moab, Utah"
           fill
-          className="object-cover"
+          className="object-cover object-[55%_74%]"
           sizes="100vw"
         />
         <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/60 to-transparent" />
