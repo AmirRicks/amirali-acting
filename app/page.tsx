@@ -167,7 +167,7 @@ export default function Home() {
               sizes="100vw"
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-stage via-stage/75 to-stage/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-stage via-stage/55 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-stage to-transparent" />
         </div>
 
