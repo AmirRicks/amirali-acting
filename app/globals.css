@@ -1,24 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --stage: #0b0a08;
-  --stage-2: #14120e;
-  --cream: #f0ead9;
-  --cream-dim: #b3ab97;
-  --gold: #c99e4a;
-  --gold-deep: #96741f;
-  --line: #2b271f;
+  --paper: #fdfbf6;
+  --white: #ffffff;
+  --sand: #f6eee0;
+  --ink: #221c13;
+  --ink-soft: #6b6152;
+  --amber: #c07b28;
+  --amber-dark: #8a5514;
+  --line: #eadfcc;
 }
 
 @theme inline {
-  --color-stage: var(--stage);
-  --color-stage-2: var(--stage-2);
-  --color-cream: var(--cream);
-  --color-cream-dim: var(--cream-dim);
-  --color-gold: var(--gold);
-  --color-gold-deep: var(--gold-deep);
+  --color-paper: var(--paper);
+  --color-sand: var(--sand);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-amber: var(--amber);
+  --color-amber-dark: var(--amber-dark);
   --color-line: var(--line);
-  --font-display: var(--font-anton);
+  --font-display: var(--font-fraunces);
   --font-sans: var(--font-archivo);
 }
 
@@ -27,34 +28,22 @@ html {
 }
 
 body {
-  background: var(--stage);
-  color: var(--cream);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--font-archivo), system-ui, sans-serif;
 }
 
 ::selection {
-  background: var(--gold);
-  color: var(--stage);
+  background: var(--amber);
+  color: #fff;
 }
 
-/* ---- film grain (static — heavy animated overlays break compositing) ---- */
-.grain::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 50;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 256px 256px;
-}
-
-/* ---- reveal on scroll ---- */
+/* ---- reveal on scroll (subtle) ---- */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.in {
@@ -62,43 +51,23 @@ body {
   transform: translateY(0);
 }
 
-/* ---- marquee ---- */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+/* ---- infinite photo carousel, drifting LEFT → RIGHT ---- */
+@keyframes drift-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
 }
 
-.marquee-track {
-  animation: marquee 28s linear infinite;
+.carousel-track {
+  animation: drift-right 45s linear infinite;
+  will-change: transform;
 }
 
-/* ---- slow zoom (hero) ---- */
-@keyframes kenburns {
-  from { transform: scale(1); }
-  to { transform: scale(1.07); }
-}
-
-.kenburns {
-  animation: kenburns 14s ease-out forwards;
-}
-
-/* ---- horizontal rail ---- */
-.rail {
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-}
-
-.rail::-webkit-scrollbar {
-  display: none;
-}
-
-.rail > * {
-  scroll-snap-align: start;
+.carousel:hover .carousel-track {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track,
-  .kenburns {
+  .carousel-track {
     animation: none;
   }
   .reveal {

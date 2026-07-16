@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Anton, Archivo } from "next/font/google";
+import { Fraunces, Archivo } from "next/font/google";
 import "./globals.css";
 
-const anton = Anton({
-  weight: "400",
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-anton",
+  variable: "--font-fraunces",
   display: "swap",
+  axes: ["opsz"],
 });
 
 const archivo = Archivo({
@@ -32,7 +32,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${anton.variable} ${archivo.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${archivo.variable}`}>
       <body className="antialiased">{children}</body>
     </html>
   );

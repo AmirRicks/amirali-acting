@@ -1,89 +1,60 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 const EMAIL = "amirali.hamzeh@gmail.com";
 
-const frames = [
-  {
-    src: "/photos/hero-suit.jpg",
-    scene: "SC. 01",
-    title: "The Professional",
-    text: "Show up early. Know the job. Take direction fast. That's the whole reputation I'm building — one call time at a time.",
-  },
-  {
-    src: "/photos/vegas-neon.jpg",
-    scene: "SC. 02",
-    title: "In a Scene",
-    text: "Neon, night exteriors, long takes — I love being inside a frame. The camera doesn't make me nervous; it makes me focus.",
-  },
-  {
-    src: "/photos/planche.jpg",
-    scene: "SC. 03",
-    title: "The Athlete",
-    text: "A full planche over a Moab canyon. Years of training buy you balance, control, and total body awareness on camera.",
-  },
-  {
-    src: "/photos/gym.jpg",
-    scene: "SC. 04",
-    title: "The Discipline",
-    text: "Gym six days a week, every week. The same discipline I bring to a 5 AM call time in Park City.",
-  },
-  {
-    src: "/photos/mountain.jpg",
-    scene: "SC. 05",
-    title: "The Utah Local",
-    text: "Salt Lake City based, local hire across Utah — Park City, Summit and Wasatch counties, Provo, Ogden. These mountains are home.",
-  },
-  {
-    src: "/photos/zion.jpg",
-    scene: "SC. 06",
-    title: "Range",
-    text: "Editorial, lifestyle, print — comfortable holding a look and telling a story without saying a word.",
-  },
-  {
-    src: "/photos/rome-road.jpg",
-    scene: "SC. 07",
-    title: "Camera Ready",
-    text: "Rome, an empty road, one frame. Wherever the story is, I'll sit down in the middle of it.",
-  },
-  {
-    src: "/photos/venice-smile.jpg",
-    scene: "SC. 08",
-    title: "The Smile",
-    text: "Commercial warmth is real warmth. Off set I'm easy to work with, quick to laugh, and genuinely having fun out here.",
-  },
+const photos = [
+  { src: "/photos/hero-suit.jpg", label: "Headshot" },
+  { src: "/photos/vegas-neon.jpg", label: "On location" },
+  { src: "/photos/planche.jpg", label: "Moab, Utah" },
+  { src: "/photos/gym.jpg", label: "Training" },
+  { src: "/photos/mountain.jpg", label: "Utah local" },
+  { src: "/photos/zion.jpg", label: "Editorial" },
+  { src: "/photos/rome-road.jpg", label: "Print" },
+  { src: "/photos/venice-smile.jpg", label: "Commercial" },
 ];
 
-const stats: [string, string][] = [
-  ["Height", `5'8"`],
-  ["Weight", "165 lb"],
-  ["Hair", "Black"],
-  ["Eyes", "Brown"],
-  ["Playing age", "17–25"],
-  ["Appearance", "Middle Eastern"],
-  ["Languages", "English · Farsi (native)"],
-  ["Union", "Non-union"],
-  ["Base", "Salt Lake City, UT (local hire)"],
+const quickStats = [
+  "Plays 17–25",
+  `5'8" · 165 lb`,
+  "English + Farsi",
+  "Non-union",
+  "Salt Lake City · local hire",
 ];
 
-const plays = [
-  "College student",
-  "Athlete / physical roles",
-  "Medical & clinical staff",
-  "Young professional · founder",
-  "Middle Eastern & Mediterranean",
-];
-
-const sports = [
-  "Bodybuilding",
-  "Calisthenics",
-  "Boxing",
-  "Wrestling",
-  "Soccer",
-  "Skiing",
-  "Swimming",
+const socials: { name: string; href: string; icon: React.ReactNode }[] = [
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/amirali-hamzeh",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden>
+        <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
+      </svg>
+    ),
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/amirali.hamzeh/",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden>
+        <path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 3.68a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zm0 10.16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z" />
+      </svg>
+    ),
+  },
+  {
+    name: "TikTok",
+    href: "https://www.tiktok.com/@amirali.hamzeh",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden>
+        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.9 2.9 0 1 1-2.9-2.9c.28 0 .56.04.82.12V9.4a6.34 6.34 0 0 0-.82-.05A6.33 6.33 0 1 0 15.8 15.7V9.01a8.16 8.16 0 0 0 4.77 1.52V7.07a4.85 4.85 0 0 1-.98-.38z" />
+      </svg>
+    ),
+  },
+  // Facebook + Snapchat: waiting on Amir's real profile URLs — flip href and they render.
+  // { name: "Facebook", href: "", icon: ... },
+  // { name: "Snapchat", href: "", icon: ... },
 ];
 
 function useReveal() {
@@ -97,7 +68,7 @@ function useReveal() {
             io.unobserve(e.target);
           }
         }),
-      { threshold: 0.15 }
+      { threshold: 0.12 }
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
@@ -106,446 +77,274 @@ function useReveal() {
 
 export default function Home() {
   useReveal();
-  const rail = useRef<HTMLDivElement>(null);
-
-  const scrollRail = (dir: number) => {
-    const el = rail.current;
-    if (!el) return;
-    const card = el.querySelector("article");
-    const w = card ? card.getBoundingClientRect().width + 24 : 420;
-    el.scrollBy({ left: dir * w, behavior: "smooth" });
-  };
 
   return (
-    <main className="grain relative">
+    <main className="overflow-x-clip">
       {/* ============ NAV ============ */}
-      <nav className="fixed top-0 z-40 flex w-full items-center justify-between border-b border-line/60 bg-stage/80 px-5 py-3 backdrop-blur-md md:px-10">
-        <a
-          href="#top"
-          className="font-[family-name:var(--font-display)] text-xl tracking-wide text-cream"
-        >
-          A<span className="text-gold">H</span>
-        </a>
-        <div className="hidden gap-8 text-xs uppercase tracking-[0.2em] text-cream-dim md:flex">
-          <a href="#reel" className="transition hover:text-gold">
-            Frames
+      <nav className="fixed top-0 z-40 w-full border-b border-line bg-white/85 backdrop-blur-md">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3 md:px-8">
+          <a
+            href="#top"
+            className="font-[family-name:var(--font-display)] text-xl font-semibold text-ink"
+          >
+            Amirali<span className="text-amber">.</span>
           </a>
-          <a href="#about" className="transition hover:text-gold">
-            About
-          </a>
-          <a href="#credits" className="transition hover:text-gold">
-            Credits
-          </a>
-          <a href="#discipline" className="transition hover:text-gold">
-            Discipline
-          </a>
-          <a href="#contact" className="transition hover:text-gold">
-            Contact
+          <div className="hidden gap-7 text-sm text-ink-soft md:flex">
+            <a href="#photos" className="transition hover:text-amber-dark">Photos</a>
+            <a href="#about" className="transition hover:text-amber-dark">About</a>
+            <a href="#credits" className="transition hover:text-amber-dark">Credits</a>
+            <a href="#book" className="transition hover:text-amber-dark">Contact</a>
+          </div>
+          <a
+            href="#book"
+            className="rounded-full bg-amber px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-amber-dark"
+          >
+            Book me
           </a>
         </div>
-        <a
-          href={`mailto:${EMAIL}`}
-          className="border border-gold px-4 py-1.5 text-xs uppercase tracking-[0.18em] text-gold transition hover:bg-gold hover:text-stage"
-        >
-          Book me
-        </a>
       </nav>
 
-      {/* ============ HERO ============ */}
-      <section
-        id="top"
-        className="relative flex min-h-svh flex-col justify-end overflow-hidden"
-      >
+      {/* ============ HERO — big professional image, light & warm ============ */}
+      <section id="top" className="relative min-h-svh">
         <div className="absolute inset-0">
-          <div className="kenburns absolute inset-0">
-            <Image
-              src="/photos/hero-suit.jpg"
-              alt="Amirali Hamzeh — actor headshot in a navy suit"
-              fill
-              priority
-              className="object-cover object-[52%_18%] md:object-[75%_25%]"
-              sizes="100vw"
-            />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-stage via-stage/55 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-stage to-transparent" />
+          <Image
+            src="/photos/hero-suit.jpg"
+            alt="Amirali Hamzeh — Salt Lake City actor, professional headshot"
+            fill
+            priority
+            className="object-cover object-[62%_18%]"
+            sizes="100vw"
+          />
+          {/* warm light veil, text side */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#fdfbf6f2] via-[#fdfbf6cc] to-transparent md:via-[#fdfbf680]" />
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#fdfbf6] to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-16 pt-32 md:px-10 md:pb-24">
-          <p className="reveal mb-4 text-xs uppercase tracking-[0.35em] text-gold">
-            Actor · Model · Salt Lake City
+        <div className="relative z-10 mx-auto flex min-h-svh max-w-6xl flex-col justify-center px-5 pt-20 md:px-8">
+          <p className="reveal text-sm font-semibold uppercase tracking-[0.25em] text-amber-dark">
+            Actor · Model
           </p>
-          <h1 className="reveal font-[family-name:var(--font-display)] text-[17vw] leading-[0.9] text-cream md:text-[9rem]">
-            AMIRALI
+          <h1 className="reveal mt-4 max-w-2xl font-[family-name:var(--font-display)] text-6xl font-semibold leading-[1.02] text-ink md:text-8xl">
+            Amirali
             <br />
-            HAMZEH
+            Hamzeh
           </h1>
-          <p className="reveal mt-6 max-w-xl text-base leading-relaxed text-cream-dim md:text-lg">
-            Athletic, bilingual, camera-ready — and disciplined enough to be on
-            set before the coffee is. First screen credit:{" "}
-            <span className="text-cream">Marshals (CBS)</span>, and building
-            from there.
+          <p className="reveal mt-6 max-w-md text-lg leading-relaxed text-ink-soft">
+            Salt Lake City actor — athletic, bilingual, and easy to work with.
+            Seen on <span className="font-semibold text-ink">Marshals (CBS)</span>.
           </p>
-          <div className="reveal mt-8 flex flex-wrap items-center gap-4">
+          <div className="reveal mt-9 flex flex-wrap items-center gap-4">
             <a
-              href={`mailto:${EMAIL}?subject=Casting%20inquiry%20—%20Amirali%20Hamzeh`}
-              className="bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-stage transition hover:bg-cream"
+              href="#book"
+              className="rounded-full bg-amber px-8 py-3.5 font-semibold text-white shadow-md shadow-amber/25 transition hover:-translate-y-0.5 hover:bg-amber-dark"
             >
-              Cast me
+              Book me
             </a>
             <a
               href="/Amirali-Hamzeh-Acting-Resume.pdf"
-              className="border border-cream/30 px-7 py-3 text-sm uppercase tracking-[0.15em] text-cream transition hover:border-gold hover:text-gold"
+              className="rounded-full border-2 border-ink/15 bg-white/70 px-8 py-3.5 font-semibold text-ink backdrop-blur transition hover:-translate-y-0.5 hover:border-amber hover:text-amber-dark"
             >
-              Resume (PDF)
+              Resume
             </a>
           </div>
-        </div>
-
-        {/* credit strip */}
-        <div className="relative z-10 border-t border-line bg-stage-2/80 backdrop-blur">
-          <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-10 gap-y-2 px-5 py-4 text-[11px] uppercase tracking-[0.22em] text-cream-dim md:px-10">
-            <span>
-              <span className="text-gold">Marshals (CBS)</span> · Background ·
-              2026
-            </span>
-            <span className="hidden md:inline">Non-union</span>
-            <span className="hidden md:inline">EN · Farsi</span>
-            <span className="hidden lg:inline">
-              Utah local hire · will travel
-            </span>
-          </div>
+          <ul className="reveal mt-12 flex max-w-xl flex-wrap gap-2">
+            {quickStats.map((s) => (
+              <li
+                key={s}
+                className="rounded-full border border-line bg-white/80 px-4 py-1.5 text-sm text-ink-soft backdrop-blur"
+              >
+                {s}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* ============ MARQUEE ============ */}
-      <div className="overflow-hidden border-b border-line bg-stage py-4">
-        <div className="marquee-track flex w-max gap-8 whitespace-nowrap font-[family-name:var(--font-display)] text-2xl uppercase text-cream/20">
-          {[0, 1].map((k) => (
-            <span key={k} className="flex gap-8">
-              {[
-                "Background",
-                "Commercial",
-                "Student & Indie Film",
-                "Print",
-                "Fitness",
-                "Television",
-              ].map((w) => (
-                <span key={w}>
-                  {w} <span className="text-gold/40">✦</span>
-                </span>
-              ))}
-            </span>
-          ))}
+      {/* ============ ROTATING PHOTO STRIP (small, left → right, infinite) ============ */}
+      <section id="photos" className="bg-white py-16 md:py-20">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <h2 className="reveal text-center font-[family-name:var(--font-display)] text-4xl font-semibold text-ink md:text-5xl">
+            In front of the camera
+          </h2>
+          <p className="reveal mt-3 text-center text-ink-soft">
+            Headshots, training, and life — hover to pause.
+          </p>
         </div>
-      </div>
-
-      {/* ============ FRAMES RAIL ============ */}
-      <section id="reel" className="py-20 md:py-28">
-        <div className="mx-auto max-w-6xl px-5 md:px-10">
-          <div className="reveal flex items-end justify-between">
-            <div>
-              <p className="text-xs uppercase tracking-[0.35em] text-gold">
-                Eight frames
-              </p>
-              <h2 className="mt-3 font-[family-name:var(--font-display)] text-5xl uppercase text-cream md:text-7xl">
-                The story so far
-              </h2>
-              <p className="mt-4 max-w-lg text-sm leading-relaxed text-cream-dim">
-                Scroll through — every frame is real, and so is the caption
-                under it.
-              </p>
-            </div>
-            <div className="hidden gap-3 md:flex">
-              <button
-                onClick={() => scrollRail(-1)}
-                aria-label="Previous frame"
-                className="h-12 w-12 border border-line text-cream-dim transition hover:border-gold hover:text-gold"
+        <div className="carousel mt-10 overflow-hidden" aria-label="Photo carousel">
+          <div className="carousel-track flex w-max gap-5 pr-5">
+            {[...photos, ...photos].map((p, i) => (
+              <figure
+                key={`${p.src}-${i}`}
+                className="group relative h-52 w-40 flex-none overflow-hidden rounded-2xl shadow-md md:h-64 md:w-48"
               >
-                ←
-              </button>
-              <button
-                onClick={() => scrollRail(1)}
-                aria-label="Next frame"
-                className="h-12 w-12 border border-line text-cream-dim transition hover:border-gold hover:text-gold"
-              >
-                →
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div
-          ref={rail}
-          className="rail mt-10 flex gap-6 overflow-x-auto px-5 md:px-10"
-        >
-          {frames.map((f) => (
-            <article
-              key={f.scene}
-              className="group w-[78vw] flex-none sm:w-[400px]"
-            >
-              <div className="relative aspect-[3/4] overflow-hidden border border-line bg-stage-2">
                 <Image
-                  src={f.src}
-                  alt={`${f.title} — Amirali Hamzeh`}
+                  src={p.src}
+                  alt={`${p.label} — Amirali Hamzeh`}
                   fill
-                  className="object-cover transition duration-700 group-hover:scale-[1.04]"
-                  sizes="(max-width: 640px) 78vw, 400px"
+                  className="object-cover transition duration-500 group-hover:scale-105"
+                  sizes="192px"
                 />
-                <span className="absolute left-3 top-3 bg-stage/70 px-2 py-1 text-[10px] tracking-[0.25em] text-gold backdrop-blur">
-                  {f.scene}
-                </span>
-              </div>
-              <h3 className="mt-4 font-[family-name:var(--font-display)] text-2xl uppercase tracking-wide text-cream">
-                {f.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-cream-dim">
-                {f.text}
-              </p>
-            </article>
-          ))}
+                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent px-3 pb-2 pt-6 text-xs font-medium text-white">
+                  {p.label}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ============ ABOUT ============ */}
-      <section
-        id="about"
-        className="border-y border-line bg-stage-2 py-20 md:py-28"
-      >
-        <div className="mx-auto grid max-w-6xl gap-14 px-5 md:grid-cols-[1.2fr_1fr] md:px-10">
+      {/* ============ ABOUT — short & warm ============ */}
+      <section id="about" className="bg-sand py-16 md:py-24">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 md:grid-cols-[1fr_1.2fr] md:px-8">
+          <div className="reveal relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-3xl shadow-xl">
+            <Image
+              src="/photos/venice-smile.jpg"
+              alt="Amirali Hamzeh smiling — commercial look"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 90vw, 400px"
+            />
+          </div>
           <div>
-            <p className="reveal text-xs uppercase tracking-[0.35em] text-gold">
-              About
-            </p>
-            <h2 className="reveal mt-3 font-[family-name:var(--font-display)] text-5xl uppercase leading-none text-cream md:text-6xl">
-              Reliable is
-              <br />a skill too
+            <h2 className="reveal font-[family-name:var(--font-display)] text-4xl font-semibold text-ink md:text-5xl">
+              Hi, I&apos;m Amir.
             </h2>
-            <div className="reveal mt-8 space-y-5 text-[15px] leading-relaxed text-cream-dim">
-              <p>
-                Amirali Hamzeh is a Salt Lake City–based actor and model. He
-                began on-camera work in 2026 as background talent on CBS&apos;s{" "}
-                <span className="text-cream">Marshals</span> (Paramount
-                Television Studios) and is training toward featured and
-                speaking roles across film, TV, and commercial work.
-              </p>
-              <p>
-                Off set he&apos;s a certified dental assistant, a pre-dental
-                student, and a builder who ships AI products — a work ethic he
-                brings to every call time. Persian roots and a native Farsi
-                speaker; trains at the gym six days a week; plays ages 17–25
-                and works as local hire across Utah.
-              </p>
-              <p>
-                The goal is simple: be the easiest booking on the call sheet —
-                prepared, coachable, and genuinely glad to be there.
-              </p>
-            </div>
-          </div>
-
-          <div className="reveal">
-            <div className="border border-line bg-stage p-7">
-              <p className="text-xs uppercase tracking-[0.3em] text-gold">
-                Stats
-              </p>
-              <dl className="mt-5 divide-y divide-line/70">
-                {stats.map(([k, v]) => (
-                  <div key={k} className="flex justify-between gap-6 py-2.5">
-                    <dt className="text-xs uppercase tracking-[0.15em] text-cream-dim">
-                      {k}
-                    </dt>
-                    <dd className="text-right text-sm text-cream">{v}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-            <div className="mt-6 border border-line bg-stage p-7">
-              <p className="text-xs uppercase tracking-[0.3em] text-gold">
-                Plays
-              </p>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {plays.map((p) => (
-                  <li
-                    key={p}
-                    className="border border-line px-3 py-1.5 text-xs text-cream-dim"
+            <p className="reveal mt-5 max-w-lg text-lg leading-relaxed text-ink-soft">
+              I started on camera in 2026 as background talent on CBS&apos;s{" "}
+              <span className="font-semibold text-ink">Marshals</span> — and I
+              was hooked. I train at the gym six days a week, speak native
+              Farsi, and bring a builder&apos;s work ethic to every call time.
+            </p>
+            <p className="reveal mt-4 max-w-lg text-lg leading-relaxed text-ink-soft">
+              My goal is simple: be the easiest booking on your call sheet —
+              prepared, coachable, and glad to be there.
+            </p>
+            <div className="reveal mt-7 flex flex-wrap gap-2">
+              {["College student", "Athlete", "Medical roles", "Young professional"].map(
+                (t) => (
+                  <span
+                    key={t}
+                    className="rounded-full bg-white px-4 py-1.5 text-sm font-medium text-ink-soft shadow-sm"
                   >
-                    {p}
-                  </li>
-                ))}
-              </ul>
+                    {t}
+                  </span>
+                )
+              )}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ============ BIG IMAGE BAND — discipline ============ */}
+      <section className="relative flex min-h-[70svh] items-end overflow-hidden">
+        <Image
+          src="/photos/planche.jpg"
+          alt="Amirali Hamzeh holding a full planche over a canyon in Moab, Utah"
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-black/60 to-transparent" />
+        <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-12 md:px-8">
+          <p className="reveal font-[family-name:var(--font-display)] text-3xl font-semibold text-white md:text-4xl">
+            Discipline you can see.
+          </p>
+          <p className="reveal mt-2 max-w-md text-white/85">
+            Full planche, Moab. Strength and control — take after take.
+          </p>
         </div>
       </section>
 
       {/* ============ CREDITS ============ */}
-      <section id="credits" className="py-20 md:py-28">
-        <div className="mx-auto max-w-6xl px-5 md:px-10">
-          <p className="reveal text-xs uppercase tracking-[0.35em] text-gold">
-            Credits & training
-          </p>
-          <h2 className="reveal mt-3 font-[family-name:var(--font-display)] text-5xl uppercase text-cream md:text-6xl">
-            On the record
+      <section id="credits" className="bg-white py-16 md:py-24">
+        <div className="mx-auto max-w-4xl px-5 md:px-8">
+          <h2 className="reveal text-center font-[family-name:var(--font-display)] text-4xl font-semibold text-ink md:text-5xl">
+            Credits
           </h2>
-
-          <div className="reveal mt-10 overflow-x-auto">
-            <table className="w-full min-w-[560px] border-collapse text-left">
-              <thead>
-                <tr className="border-b border-line text-[11px] uppercase tracking-[0.25em] text-cream-dim">
-                  <th className="py-3 pr-6 font-normal">Production</th>
-                  <th className="py-3 pr-6 font-normal">Role</th>
-                  <th className="py-3 pr-6 font-normal">Studio</th>
-                  <th className="py-3 font-normal">Year</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-line/60">
-                  <td className="py-4 pr-6 text-cream">
-                    Marshals (CBS) — Season 2
-                  </td>
-                  <td className="py-4 pr-6 text-cream-dim">Background</td>
-                  <td className="py-4 pr-6 text-cream-dim">
-                    Paramount Television Studios · Utah
-                  </td>
-                  <td className="py-4 text-cream-dim">2026</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div className="reveal mt-10 grid gap-6 md:grid-cols-2">
-            <div className="border border-line p-7">
-              <p className="text-xs uppercase tracking-[0.3em] text-gold">
-                Training — current
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-cream-dim">
-                On-set experience · self-tape setup at home with fast
-                turnaround · athletic base built over years of daily training.
-              </p>
-            </div>
-            <div className="border border-line p-7">
-              <p className="text-xs uppercase tracking-[0.3em] text-gold">
-                Training — pursuing
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-cream-dim">
-                Stage combat & basic stunt work (Spearhead Stunts) · scene
-                study · on-camera commercial workshops.
-              </p>
+          <div className="reveal mt-10 overflow-hidden rounded-2xl border border-line bg-paper shadow-sm">
+            <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-5">
+              <div>
+                <p className="font-semibold text-ink">Marshals (CBS) — Season 2</p>
+                <p className="text-sm text-ink-soft">
+                  Background · Paramount Television Studios · Utah
+                </p>
+              </div>
+              <span className="rounded-full bg-sand px-4 py-1.5 text-sm font-semibold text-amber-dark">
+                2026
+              </span>
             </div>
           </div>
-
-          <a
-            href="/Amirali-Hamzeh-Acting-Resume.pdf"
-            className="reveal mt-10 inline-block border border-gold px-7 py-3 text-sm uppercase tracking-[0.15em] text-gold transition hover:bg-gold hover:text-stage"
-          >
-            Download full resume
-          </a>
-        </div>
-      </section>
-
-      {/* ============ DISCIPLINE ============ */}
-      <section
-        id="discipline"
-        className="border-y border-line bg-stage-2 py-20 md:py-28"
-      >
-        <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-2 md:px-10">
-          <div className="reveal relative aspect-[3/4] overflow-hidden border border-line">
-            <Image
-              src="/photos/planche.jpg"
-              alt="Amirali Hamzeh holding a full planche on a rock over a canyon in Moab, Utah"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 90vw, 45vw"
-            />
-            <span className="absolute bottom-3 left-3 bg-stage/70 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-cream backdrop-blur">
-              Full planche · Moab, Utah
-            </span>
-          </div>
-          <div>
-            <p className="reveal text-xs uppercase tracking-[0.35em] text-gold">
-              The discipline
-            </p>
-            <h2 className="reveal mt-3 font-[family-name:var(--font-display)] text-5xl uppercase leading-none text-cream md:text-6xl">
-              Body is part
-              <br />
-              of the craft
-            </h2>
-            <p className="reveal mt-6 max-w-md text-[15px] leading-relaxed text-cream-dim">
-              Six training days a week, every week — strength, calisthenics,
-              and sport. It shows up on camera as posture, stamina through long
-              set days, and the control to repeat physical action take after
-              take.
-            </p>
-            <ul className="reveal mt-8 flex max-w-md flex-wrap gap-2">
-              {sports.map((s) => (
-                <li
-                  key={s}
-                  className="border border-line px-3 py-1.5 text-xs uppercase tracking-[0.12em] text-cream-dim"
-                >
-                  {s}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* ============ CONTACT ============ */}
-      <section id="contact" className="relative overflow-hidden py-24 md:py-36">
-        <div className="pointer-events-none absolute -right-40 top-1/2 hidden h-[130%] w-[46rem] -translate-y-1/2 opacity-25 md:block">
-          <Image
-            src="/photos/mountain.jpg"
-            alt=""
-            fill
-            className="object-cover"
-            sizes="46rem"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-stage via-stage/60 to-stage/30" />
-        </div>
-        <div className="relative mx-auto max-w-6xl px-5 md:px-10">
-          <p className="reveal text-xs uppercase tracking-[0.35em] text-gold">
-            Casting · booking
+          <p className="reveal mt-6 text-center text-sm text-ink-soft">
+            Training now: self-tape studio at home · pursuing stage combat
+            (Spearhead Stunts) & on-camera workshops
           </p>
-          <h2 className="reveal mt-4 font-[family-name:var(--font-display)] text-[14vw] uppercase leading-[0.9] text-cream md:text-[7.5rem]">
-            Let&apos;s make
-            <br />a scene
-          </h2>
-          <p className="reveal mt-6 max-w-md text-[15px] leading-relaxed text-cream-dim">
-            Available for background, commercial, student and independent film,
-            and print — Salt Lake City local hire, willing to travel.
-          </p>
-          <div className="reveal mt-9 flex flex-wrap items-center gap-4">
+          <div className="reveal mt-8 text-center">
             <a
-              href={`mailto:${EMAIL}?subject=Casting%20inquiry%20—%20Amirali%20Hamzeh`}
-              className="bg-gold px-8 py-4 text-sm font-semibold uppercase tracking-[0.15em] text-stage transition hover:bg-cream"
+              href="/Amirali-Hamzeh-Acting-Resume.pdf"
+              className="inline-block rounded-full border-2 border-amber px-8 py-3.5 font-semibold text-amber-dark transition hover:bg-amber hover:text-white"
+            >
+              Download resume (PDF)
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ BOOK ME ============ */}
+      <section id="book" className="relative overflow-hidden">
+        <Image
+          src="/photos/mountain.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#fdfbf6] via-[#fdfbf6e6] to-[#fdfbf6cc]" />
+        <div className="relative z-10 mx-auto max-w-3xl px-5 py-20 text-center md:px-8 md:py-28">
+          <h2 className="reveal font-[family-name:var(--font-display)] text-5xl font-semibold text-ink md:text-6xl">
+            Let&apos;s work together
+          </h2>
+          <p className="reveal mx-auto mt-4 max-w-md text-lg text-ink-soft">
+            Background · commercial · student & indie film · print. Utah local
+            hire, willing to travel. I reply fast.
+          </p>
+          <div className="reveal mt-9">
+            <a
+              href={`mailto:${EMAIL}?subject=Booking%20inquiry%20—%20Amirali%20Hamzeh`}
+              className="inline-block rounded-full bg-amber px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-amber/30 transition hover:-translate-y-0.5 hover:bg-amber-dark"
             >
               {EMAIL}
             </a>
-            <a
-              href="https://www.instagram.com/amirali.hamzeh/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border border-cream/30 px-8 py-4 text-sm uppercase tracking-[0.15em] text-cream transition hover:border-gold hover:text-gold"
-            >
-              Instagram
-            </a>
           </div>
-          <p className="reveal mt-8 text-xs uppercase tracking-[0.2em] text-cream-dim">
+          <div className="reveal mt-9 flex items-center justify-center gap-4">
+            {socials
+              .filter((s) => s.href)
+              .map((s) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.name}
+                  title={s.name}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-white text-ink-soft shadow-sm transition hover:-translate-y-0.5 hover:border-amber hover:text-amber-dark"
+                >
+                  {s.icon}
+                </a>
+              ))}
+          </div>
+          <p className="reveal mt-8 text-sm text-ink-soft">
             Also on Casting Networks · Source & Cast · Backstage
           </p>
         </div>
       </section>
 
       {/* ============ FOOTER ============ */}
-      <footer className="border-t border-line px-5 py-8 md:px-10">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 text-[11px] uppercase tracking-[0.2em] text-cream-dim">
-          <span>© {new Date().getFullYear()} Amirali Hamzeh</span>
-          <span>
-            Actor · Salt Lake City, Utah —{" "}
-            <a href={`mailto:${EMAIL}`} className="text-gold">
-              {EMAIL}
-            </a>
-          </span>
+      <footer className="border-t border-line bg-white px-5 py-7 md:px-8">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 text-sm text-ink-soft">
+          <span>© {new Date().getFullYear()} Amirali Hamzeh — Actor, Salt Lake City</span>
+          <a href={`mailto:${EMAIL}`} className="font-medium text-amber-dark">
+            {EMAIL}
+          </a>
         </div>
       </footer>
     </main>
