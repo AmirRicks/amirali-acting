@@ -105,7 +105,7 @@ async function fetchSource(src: { name: string; url: string }): Promise<{
         text: "",
       };
     }
-    const text = htmlToText(await res.text()).slice(0, 7000);
+    const text = htmlToText(await res.text()).slice(0, 3200);
     if (text.length < 300) {
       return {
         status: { source: src.name, ok: false, note: "page is JS-rendered / empty for bots" },
@@ -265,9 +265,13 @@ Below is raw text scraped from public casting feeds right now. Analyze it and re
 
 Rules reminder: fits may be EMPTY — say so honestly rather than padding. Copy fields verbatim from the text. Do not merge separate listings.
 
-${corpus}`.slice(0, 60_000);
+${corpus}`.slice(0, 24_000);
 
-  const llm = await runLlm(prompt);
+  let llm = await runLlm(prompt);
+  if (!llm.ok || !llm.content.includes("{")) {
+    // free-tier models choke on long inputs — one retry at half size
+    llm = await runLlm(prompt.slice(0, 12_000) + "\n(Sources truncated — analyze what is present.)");
+  }
   if (!llm.ok) {
     return {
       ...base,
