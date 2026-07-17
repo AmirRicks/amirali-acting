@@ -64,13 +64,18 @@ const EXCLUDE = [
 ];
 
 // --- Fetchable sources -------------------------------------------------------
+// Verified 2026-07-16: Backstage hard-403s all server IPs and Utah Actors (Ning)
+// serves a ~400-char login shell to bots — both live in the manual-checks strip
+// instead. allcasting moved to /castingcalls and ignores the location param
+// server-side (JS filter), so we take the nationwide first page and let the LLM
+// location-filter. auditionsfree fetches rich text but posts are often stale —
+// the prompt's expired-deadline rule handles that.
 const SOURCES: { name: string; url: string }[] = [
   { name: "Utah Film Commission — job board", url: "https://film.utah.gov/job-opportunities/" },
   { name: "Casting Networks — public SLC feed", url: "https://www.castingnetworks.com/salt-lake-city-casting-calls/" },
-  { name: "allcasting — SLC feed (discovery only, apply is paid-gated)", url: "https://allcasting.com/casting-calls/salt-lake-city/" },
+  { name: "allcasting — nationwide feed (JS location filter; pick ONLY SLC-area or remote items; apply is paid-gated = discovery only)", url: "https://allcasting.com/castingcalls" },
   { name: "Stacker — Utah casting roundup (Backstage aggregate)", url: "https://stacker.com/stories/utah/movies-and-tv-shows-casting-utah" },
-  { name: "Utah Actors (Ning) — community", url: "https://utahactors.ning.com/" },
-  { name: "Backstage — public SLC listings", url: "https://www.backstage.com/casting/open-casting-calls/salt-lake-city-ut/" },
+  { name: "auditionsfree — Utah tag (posts often STALE — check each post's date/deadline before treating as live)", url: "https://www.auditionsfree.com/tag/utah-auditions/" },
 ];
 
 const UA =
@@ -101,7 +106,16 @@ async function fetchSource(src: { name: string; url: string }): Promise<{
     });
     if (!res.ok) {
       return {
-        status: { source: src.name, ok: false, note: `HTTP ${res.status} (likely bot-blocked)` },
+        status: {
+          source: src.name,
+          ok: false,
+          note:
+            res.status === 403
+              ? "HTTP 403 (bot-blocked)"
+              : res.status === 404
+                ? "HTTP 404 (URL changed — needs a fix in SOURCES)"
+                : `HTTP ${res.status}`,
+        },
         text: "",
       };
     }
