@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useEffect } from "react";
 
 const EMAIL = "amirali.hamzeh@gmail.com";
+const PHONE = "804-982-2814";
+const PHONE_E164 = "+18049822814";
 
 const photos = [
   { src: "/photos/hero-suit.jpg", label: "Headshot" },
@@ -49,6 +51,19 @@ const socials: { name: string; href: string; icon: React.ReactNode }[] = [
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden>
         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.9 2.9 0 1 1-2.9-2.9c.28 0 .56.04.82.12V9.4a6.34 6.34 0 0 0-.82-.05A6.33 6.33 0 1 0 15.8 15.7V9.01a8.16 8.16 0 0 0 4.77 1.52V7.07a4.85 4.85 0 0 1-.98-.38z" />
+      </svg>
+    ),
+  },
+  {
+    name: "Utah Actors",
+    href: "https://utahactors.ning.com/members/AmiraliHamzeh",
+    icon: (
+      // theater masks — Utah Actors network profile
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden>
+        <path d="M3 4h9v7.5A4.5 4.5 0 0 1 7.5 16 4.5 4.5 0 0 1 3 11.5V4z" />
+        <path d="M5.4 7.2h1.6M9 7.2h1.6M5.6 11.2c.6.9 1.4 1.4 1.9 1.4s1.3-.5 1.9-1.4" />
+        <path d="M12 8h9v7.5A4.5 4.5 0 0 1 16.5 20 4.5 4.5 0 0 1 12 15.5V8z" fill="currentColor" fillOpacity="0.08" />
+        <path d="M14.4 11.2h1.6M18 11.2h1.6M14.6 16.6c.6-.9 1.4-1.4 1.9-1.4s1.3.5 1.9 1.4" />
       </svg>
     ),
   },
@@ -307,12 +322,18 @@ export default function Home() {
             Background · commercial · student & indie film · print. Utah local
             hire, willing to travel. I reply fast.
           </p>
-          <div className="reveal mt-9">
+          <div className="reveal mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <a
               href={`mailto:${EMAIL}?subject=Booking%20inquiry%20—%20Amirali%20Hamzeh`}
-              className="inline-block rounded-full bg-amber px-10 py-4 text-lg font-semibold text-white shadow-lg shadow-amber/30 transition hover:-translate-y-0.5 hover:bg-amber-dark"
+              className="inline-block rounded-full bg-amber px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-amber/30 transition hover:-translate-y-0.5 hover:bg-amber-dark"
             >
               {EMAIL}
+            </a>
+            <a
+              href={`sms:${PHONE_E164}`}
+              className="inline-block rounded-full border-2 border-amber bg-white/80 px-8 py-4 text-lg font-semibold text-amber-dark backdrop-blur transition hover:-translate-y-0.5 hover:bg-amber hover:text-white"
+            >
+              Call / text {PHONE}
             </a>
           </div>
           <div className="reveal mt-9 flex items-center justify-center gap-4">
@@ -333,7 +354,15 @@ export default function Home() {
               ))}
           </div>
           <p className="reveal mt-8 text-sm text-ink-soft">
-            Also on Casting Networks · Source & Cast · Backstage
+            Also on Casting Networks · Source & Cast · Backstage ·{" "}
+            <a
+              href="https://utahactors.ning.com/members/AmiraliHamzeh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-amber-dark underline-offset-2 hover:underline"
+            >
+              Utah Actors
+            </a>
           </p>
         </div>
       </section>
@@ -342,9 +371,14 @@ export default function Home() {
       <footer className="border-t border-line bg-white px-5 py-7 md:px-8">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 text-sm text-ink-soft">
           <span>© {new Date().getFullYear()} Amirali Hamzeh — Actor, Salt Lake City</span>
-          <a href={`mailto:${EMAIL}`} className="font-medium text-amber-dark">
-            {EMAIL}
-          </a>
+          <span className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <a href={`mailto:${EMAIL}`} className="font-medium text-amber-dark">
+              {EMAIL}
+            </a>
+            <a href={`tel:${PHONE_E164}`} className="font-medium text-amber-dark">
+              {PHONE}
+            </a>
+          </span>
         </div>
       </footer>
     </main>
