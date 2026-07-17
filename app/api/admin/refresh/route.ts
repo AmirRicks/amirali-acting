@@ -8,6 +8,6 @@ export async function POST() {
   if (!(await isAdmin())) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
-  revalidateTag("daily-brief");
+  revalidateTag("daily-brief", "max");
   return NextResponse.json({ ok: true });
 }

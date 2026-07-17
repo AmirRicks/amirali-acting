@@ -13,7 +13,7 @@ export async function GET(req: Request) {
   if (!process.env.CRON_SECRET || bearer !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
-  revalidateTag("daily-brief");
+  revalidateTag("daily-brief", "max");
   const brief = await getBriefCached(); // regenerates + repopulates the cache
   return NextResponse.json({
     ok: true,
