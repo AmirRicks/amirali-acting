@@ -146,7 +146,8 @@ export default function Home() {
           </h1>
           <p className="reveal mt-6 max-w-md text-lg leading-relaxed text-ink-soft">
             Salt Lake City actor — athletic, bilingual, and easy to work with.
-            Seen on <span className="font-semibold text-ink">Marshals (CBS)</span>.
+            Seen on <span className="font-semibold text-ink">Marshals (CBS)</span> and{" "}
+            <span className="font-semibold text-ink">The Wayfinders</span>.
           </p>
           <div className="reveal mt-9 flex flex-wrap items-center gap-4">
             <a
@@ -283,6 +284,15 @@ export default function Home() {
                 <p className="text-sm text-ink-soft">
                   Background · Paramount Television Studios · Utah
                 </p>
+              </div>
+              <span className="rounded-full bg-sand px-4 py-1.5 text-sm font-semibold text-amber-dark">
+                2026
+              </span>
+            </div>
+            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line px-6 py-5">
+              <div>
+                <p className="font-semibold text-ink">The Wayfinders — Season 2</p>
+                <p className="text-sm text-ink-soft">Background · Utah</p>
               </div>
               <span className="rounded-full bg-sand px-4 py-1.5 text-sm font-semibold text-amber-dark">
                 2026
