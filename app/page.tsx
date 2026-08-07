@@ -23,7 +23,7 @@ const quickStats = [
   `5'8" · 165 lb`,
   "English + Farsi",
   "Non-union",
-  "4 paid set days",
+  "5 paid set days",
   "Salt Lake City · local hire",
 ];
 
@@ -282,9 +282,7 @@ export default function Home() {
             <div className="flex flex-wrap items-center justify-between gap-3 px-6 py-5">
               <div>
                 <p className="font-semibold text-ink">Marshals (CBS) — Season 2</p>
-                <p className="text-sm text-ink-soft">
-                  Background · Paramount Television Studios · Utah
-                </p>
+                <p className="text-sm text-ink-soft">Background · 2 shoot days · Utah</p>
               </div>
               <span className="rounded-full bg-sand px-4 py-1.5 text-sm font-semibold text-amber-dark">
                 2026
