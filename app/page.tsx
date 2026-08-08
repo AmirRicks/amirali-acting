@@ -108,6 +108,7 @@ export default function Home() {
           <div className="hidden gap-7 text-sm text-ink-soft md:flex">
             <a href="#photos" className="transition hover:text-amber-dark">Photos</a>
             <a href="#about" className="transition hover:text-amber-dark">About</a>
+            <a href="#reel" className="transition hover:text-amber-dark">Intro video</a>
             <a href="#credits" className="transition hover:text-amber-dark">Credits</a>
             <a href="#book" className="transition hover:text-amber-dark">Contact</a>
           </div>
@@ -156,6 +157,12 @@ export default function Home() {
               className="rounded-full bg-amber px-8 py-3.5 font-semibold text-white shadow-md shadow-amber/25 transition hover:-translate-y-0.5 hover:bg-amber-dark"
             >
               Book me
+            </a>
+            <a
+              href="#reel"
+              className="rounded-full border-2 border-ink/15 bg-white/70 px-8 py-3.5 font-semibold text-ink backdrop-blur transition hover:-translate-y-0.5 hover:border-amber hover:text-amber-dark"
+            >
+              Watch intro
             </a>
             <a
               href="/Amirali-Hamzeh-Acting-Resume.pdf"
@@ -309,6 +316,34 @@ export default function Home() {
             >
               Download resume (PDF)
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ============ INTRO VIDEO ============ */}
+      <section id="reel" className="bg-sand py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <h2 className="reveal text-center font-[family-name:var(--font-display)] text-4xl font-semibold text-ink md:text-5xl">
+            Meet me
+          </h2>
+          <p className="reveal mx-auto mt-4 max-w-xl text-center text-ink-soft">
+            A quick introduction — who I am, what I bring to set, and the work
+            I&apos;ve done so far.
+          </p>
+          <div className="reveal mx-auto mt-10 w-full max-w-[340px] md:max-w-[380px]">
+            <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-lg">
+              <video
+                controls
+                playsInline
+                preload="metadata"
+                poster="/photos/intro-poster.jpg"
+                className="block aspect-[9/16] w-full bg-ink object-cover"
+              >
+                <source src="/amirali-hamzeh-intro.mp4" type="video/mp4" />
+                Your browser doesn&apos;t support video playback.{" "}
+                <a href="/amirali-hamzeh-intro.mp4">Download the intro video</a>.
+              </video>
+            </div>
           </div>
         </div>
       </section>
