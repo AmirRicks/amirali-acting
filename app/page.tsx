@@ -50,6 +50,7 @@ const playsWell = [
 ];
 
 const availableFor = [
+  "Acting & speaking roles",
   "Background",
   "Commercial",
   "Student & independent film",
@@ -411,13 +412,16 @@ export default function Home() {
             </div>
             <div className="reveal rounded-2xl border border-line bg-white p-7">
               <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold text-ink">
-                Based in
+                Based in &amp; travel
               </h3>
               <p className="mt-4 text-ink-soft">
                 <span className="font-semibold text-ink">Salt Lake City, Utah</span>{" "}
                 — local hire, no travel or lodging needed anywhere on the Wasatch
-                Front. Reliable transport, picture car available, and willing to
-                travel for the right booking.
+                Front. Reliable transport and picture car available.
+              </p>
+              <p className="mt-3 text-ink-soft">
+                Happy to travel outside Utah for any production that covers
+                travel and hotel.
               </p>
             </div>
           </div>
@@ -625,9 +629,10 @@ export default function Home() {
           <h2 className="reveal font-[family-name:var(--font-display)] text-5xl font-semibold text-ink md:text-6xl">
             Let&apos;s work together
           </h2>
-          <p className="reveal mx-auto mt-4 max-w-md text-lg text-ink-soft">
-            Background · commercial · student &amp; indie film · print. Utah
-            local hire, willing to travel. I reply fast.
+          <p className="reveal mx-auto mt-4 max-w-lg text-lg text-ink-soft">
+            Acting &amp; speaking roles · background · commercial · student
+            &amp; indie film · print. Utah local hire — and happy to travel
+            anywhere the production covers travel and hotel. I reply fast.
           </p>
           <div className="reveal mt-9 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <a

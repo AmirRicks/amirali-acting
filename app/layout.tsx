@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   title: "Amirali Hamzeh — Actor · Salt Lake City",
   description:
-    "Amirali Hamzeh is a Salt Lake City–based actor and model. Background credits on Marshals (CBS) and The Wayfinders. Athletic build, bilingual English/Farsi, non-union, local hire across Utah.",
+    "Amirali Hamzeh is a Salt Lake City–based actor and model, available for acting and speaking roles, background, commercial, and print work. Credits on Marshals (CBS) and The Wayfinders. Athletic build, bilingual English/Farsi, non-union. Utah local hire, and will travel when travel and hotel are covered.",
   keywords: [
     "Amirali Hamzeh",
     "Salt Lake City actor",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: "Amirali Hamzeh — Actor",
     title: "Amirali Hamzeh — Actor · Salt Lake City",
     description:
-      "Salt Lake City–based actor & model. Marshals (CBS) and The Wayfinders background credits. Athletic · EN/Farsi · Non-union · Utah local hire.",
+      "Salt Lake City–based actor & model. Available for acting, background, commercial & print. Athletic · EN/Farsi · Non-union · Utah local hire · will travel when covered.",
     images: [
       {
         url: "/photos/hero-suit.jpg",
