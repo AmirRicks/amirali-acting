@@ -22,7 +22,7 @@ const photos = [
 
 const quickStats = [
   "Plays 17–25",
-  `5'8" · 165 lb`,
+  `5'8" · 160 lb`,
   "English + Farsi",
   "Non-union",
   "7 paid set days",
@@ -32,7 +32,7 @@ const quickStats = [
 /* Size card — every value verified against his platform profiles. */
 const sizeCard: { label: string; value: string }[] = [
   { label: "Height", value: `5'8"` },
-  { label: "Weight", value: "165 lb" },
+  { label: "Weight", value: "160 lb" },
   { label: "Build", value: "Athletic / toned" },
   { label: "Hair", value: "Black" },
   { label: "Eyes", value: "Brown" },
