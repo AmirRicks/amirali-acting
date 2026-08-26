@@ -105,7 +105,7 @@ const credits: {
   {
     title: "Marshals (CBS) — Season 2",
     meta: "Background · Paramount Television Studios · Utah",
-    detail: "2 shoot days — July 8 & August 7, 2026",
+    detail: "4 shoot days across 3 episodes — July 8, August 7, 21 & 25, 2026",
     year: "2026",
   },
   {
