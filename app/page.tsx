@@ -25,7 +25,7 @@ const quickStats = [
   `5'8" · 160 lb`,
   "English + Farsi",
   "Non-union",
-  "9 paid set days",
+  "10 paid set days",
   "Salt Lake City · local hire",
 ];
 
@@ -105,7 +105,7 @@ const credits: {
   {
     title: "Marshals (CBS) — Season 2",
     meta: "Background · Paramount Television Studios · Utah",
-    detail: "4 shoot days across 3 episodes — July 8, August 7, 21 & 25, 2026",
+    detail: "5 shoot days across 3 episodes — July 8, August 7, 21, 25 & 28, 2026",
     year: "2026",
   },
   {
@@ -342,7 +342,7 @@ export default function Home() {
             <p className="reveal mt-5 max-w-lg text-lg leading-relaxed text-ink-soft">
               I stepped on a set for the first time in July 2026 — background on
               CBS&apos;s <span className="font-semibold text-ink">Marshals</span>{" "}
-              — and I was hooked. Nine paid set days later across two Utah
+              — and I was hooked. Ten paid set days later across two Utah
               productions, I&apos;m building this the same way I build
               everything: show up early, take the note, come back better.
             </p>
