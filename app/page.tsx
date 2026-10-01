@@ -25,7 +25,7 @@ const quickStats = [
   `5'8" · 160 lb`,
   "English + Farsi",
   "Non-union",
-  "12 paid set days",
+  "13 paid set days",
   "Salt Lake City · local hire",
 ];
 
@@ -114,6 +114,12 @@ const credits: {
     meta: "Background · Utah",
     detail:
       "5 shoot days — four consecutive rebookings from a single submission",
+    year: "2026",
+  },
+  {
+    title: "Commercial — college campus spot",
+    meta: "Background (college student) · Yun Casting · Salt Lake City",
+    detail: "1 shoot day — September 29, 2026",
     year: "2026",
   },
   {
@@ -349,7 +355,7 @@ export default function Home() {
             <p className="reveal mt-5 max-w-lg text-lg leading-relaxed text-ink-soft">
               I stepped on a set for the first time in July 2026 — background on
               CBS&apos;s <span className="font-semibold text-ink">Marshals</span>{" "}
-              — and I was hooked. Twelve paid set days later across three Utah
+              — and I was hooked. Thirteen paid set days later across four Utah
               productions, I&apos;m building this the same way I build
               everything: show up early, take the note, come back better.
             </p>
