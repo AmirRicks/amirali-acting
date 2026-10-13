@@ -39,6 +39,7 @@ const sizeCard: { label: string; value: string }[] = [
   { label: "Playing age", value: "17–25" },
   { label: "Ethnicity", value: "Middle Eastern" },
   { label: "Union", value: "Non-union" },
+  { label: "Representation", value: "Urban Talent Management" },
 ];
 
 const playsWell = [
