@@ -25,7 +25,7 @@ const quickStats = [
   `5'8" · 160 lb`,
   "English + Farsi",
   "Non-union",
-  "13 paid set days",
+  "17 paid set days",
   "Salt Lake City · local hire",
 ];
 
@@ -39,7 +39,6 @@ const sizeCard: { label: string; value: string }[] = [
   { label: "Playing age", value: "17–25" },
   { label: "Ethnicity", value: "Middle Eastern" },
   { label: "Union", value: "Non-union" },
-  { label: "Representation", value: "Urban Talent Management" },
 ];
 
 const playsWell = [
@@ -105,16 +104,22 @@ const credits: {
 }[] = [
   {
     title: "Marshals (CBS) — Season 2",
-    meta: "Background · Paramount Television Studios · Utah",
+    meta: "Background · Driver / Marshal Tech / Bar Patron · Paramount Television Studios · Utah",
     detail:
-      "6 shoot days across 4 episodes — July 8, August 7, 21, 25 & 28, and September 25, 2026",
+      "9 shoot days across at least 5 episodes — July 8, August 7, 21, 25 & 28, September 25, and October 7, 15 & 16, 2026",
     year: "2026",
   },
   {
     title: "The Wayfinders — Season 2",
-    meta: "Background · Utah",
+    meta: "Background · HS Student / Homecoming Couple · Utah",
     detail:
       "5 shoot days — four consecutive rebookings from a single submission",
+    year: "2026",
+  },
+  {
+    title: "Guarded — Series",
+    meta: "Background · Funeral Attendee · Silver Peak Productions · Provo, Utah",
+    detail: "1 shoot day — October 23, 2026",
     year: "2026",
   },
   {
@@ -356,7 +361,7 @@ export default function Home() {
             <p className="reveal mt-5 max-w-lg text-lg leading-relaxed text-ink-soft">
               I stepped on a set for the first time in July 2026 — background on
               CBS&apos;s <span className="font-semibold text-ink">Marshals</span>{" "}
-              — and I was hooked. Thirteen paid set days later across four Utah
+              — and I was hooked. Seventeen paid set days later across five Utah
               productions, I&apos;m building this the same way I build
               everything: show up early, take the note, come back better.
             </p>
